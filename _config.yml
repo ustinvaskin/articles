@@ -4,7 +4,7 @@ author:        Ustin M. Vaskin
 description: >-
   A simple, easy-to-update GitHub Pages blog.
 baseurl:       ""       # leave empty for user site
-url:           "https://<your-username>.github.io"
+url:           "https://<ustinvaskin>.github.io"
 
 theme:         minima
 plugins:
