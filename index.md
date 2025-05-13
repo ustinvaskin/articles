@@ -1,8 +1,12 @@
 ---
-title: My Articles
-theme: jekyll-theme-cayman
+layout: default
+title:  "My Articles"
 ---
 
-# Welcome to My Articles site!
+# My Articles
 
-Here you can browse all my write-ups…
+Here’s a list of all your posts:
+
+{% for post in site.posts %}
+- [{{ post.date | date: "%Y-%m-%d" }} – {{ post.title }}]({{ post.url | relative_url }})
+{% endfor %}
