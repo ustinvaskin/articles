@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Your Post Title"
-date:   2025-05-13 12:00:00 +02:00
-tags:   [tag1, tag2]
+title:  "Atomic Design"
+date:   2025-05-13 10:00:00 +0000   # optional time and timezone
 ---
+
 Write your **Markdown** content here.
 
 # Structuring Your React UI with Atomic Design
