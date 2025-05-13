@@ -3,8 +3,6 @@ layout: default
 title: "My Articles"
 ---
 
-# My Articles
-
 <p style="margin-bottom:1em;"><a href="https://ustinvaskin.github.io/disclaimer-blog/" target="_blank" rel="noopener">Read our Disclaimer</a></p>
 
 Here’s a list of my posts:
