@@ -1,11 +1,14 @@
-title:         My Articles Blog
-email:         ustin.vaskin2011@gmail.com
-author:        Ustin M. Vaskin
+# _config.yml
+title:       My Articles Blog
+email:       ustin.vaskin2011@gmail.com
+author:      Ustin M. Vaskin
 description: >-
   A simple, easy-to-update GitHub Pages blog.
-baseurl:       ""       # leave empty for user site
-url:           "https://<ustinvaskin>.github.io"
 
-theme:         minima
+# For project pages:
+baseurl:     "/articles"                       # the sub-path your site lives at
+url:         "https://ustinvaskin.github.io"   # NO angle brackets!
+
+theme:       minima
 plugins:
   - jekyll-feed
