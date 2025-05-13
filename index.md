@@ -1,5 +1,8 @@
 ---
-layout: home
+title: My Articles
+theme: jekyll-theme-cayman
 ---
-Welcome to my articles blog!  
-Click on any post below to read.
+
+# Welcome to My Articles site!
+
+Here you can browse all my write-ups…
