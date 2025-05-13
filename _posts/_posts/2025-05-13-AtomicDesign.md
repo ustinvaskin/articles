@@ -4,8 +4,6 @@ title:  "Atomic Design"
 date:   2025-05-13 10:00:00 +0000   # optional time and timezone
 ---
 
-Write your **Markdown** content here.
-
 # Structuring Your React UI with Atomic Design
 
 Here’s a little guide to structuring your React UI using Atomic Design and balancing component granularity—and deep dives into performance overhead, indirection pitfalls, and other common trade‑offs.
