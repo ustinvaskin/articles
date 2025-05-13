@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Atomic Design"
+title:  "Новые методы массивов в JavaScript"
 date:   2025-05-13 10:00:00 +0000   # optional time and timezone
 ---
 
