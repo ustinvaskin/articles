@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ site.title }}</title>
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+</head>
+<body>
+  <header>
+    <h1><a href="{{ "/" | relative_url }}">{{ site.title }}</a></h1>
+    <p>{{ site.description }}</p>
+  </header>
+  <main>
+    {% for post in site.posts %}
+      <article>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+        <p>{{ post.excerpt }}</p>
+      </article>
+    {% endfor %}
+  </main>
+  <footer>
+    <p>© {{ site.time | date: "%Y" }} {{ site.author }}</p>
+  </footer>
+</body>
+</html>
