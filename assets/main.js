@@ -108,6 +108,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const handleForm = (form, messageEl) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      messageEl.classList.add('hidden');
+      form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const data = new FormData(form);
+      try {
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (resp.ok) {
+          form.reset();
+          messageEl.textContent = 'Thanks! Your submission has been received.';
+        } else {
+          messageEl.textContent = 'There was a problem submitting the form.';
+          const inputs = form.querySelectorAll('input, textarea');
+          inputs.forEach(i => i.classList.add('error'));
+        }
+      } catch {
+        messageEl.textContent = 'There was a problem submitting the form.';
+      }
+
+      messageEl.classList.remove('hidden');
+    });
+  };
+
+  const subscribeForm = document.getElementById('subscribe-form');
+  const subscribeMsg = document.getElementById('subscribe-message');
+  if (subscribeForm && subscribeMsg) handleForm(subscribeForm, subscribeMsg);
+
+  const contactForm = document.querySelector('.contact-form');
+  const contactMsg = document.getElementById('contact-form-message');
+  if (contactForm && contactMsg) handleForm(contactForm, contactMsg);
+
   if (window.hljs) {
     hljs.highlightAll();
   }
