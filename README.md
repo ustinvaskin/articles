@@ -40,7 +40,7 @@ Both the subscribe and contact forms rely on [Formspree](https://formspree.io/) 
 ## Dark Mode
 
 A dark colour scheme is built in. Click the moon icon in the header to toggle between light and dark styles. Your preference is stored in `localStorage` and highlight.js loads the matching theme.
-The site colours are defined at the top of `assets/main.css`, with overrides in `body.dark` for the dark theme.
+The site colours are defined at the top of `assets/main.css`, with overrides in `body.dark` for the dark theme. The palette now uses deep greys with soft blue accents for improved readability.
 
 ## Tests
 

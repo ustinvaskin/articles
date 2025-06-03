@@ -25,20 +25,20 @@ body {
 }
 
 body.dark {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-  --header-bg: #2196f3;
-  --header-bg2: #1976d2;
-  --header-text: #eee;
-  --link-color: #90caf9;
-  --sidebar-bg: #1e1e1e;
-  --footer-bg: #1e1e1e;
-  --footer-text: #e0e0e0;
-  --card-bg: #1e1e1e;
-  --border-color: #333;
-  --tag-bg: #1565c0;
-  --tag-text: #e0e0e0;
-  --muted-text: #ccc;
+  --bg-color: #0d1117;
+  --text-color: #c9d1d9;
+  --header-bg: #21262d;
+  --header-bg2: #2d333b;
+  --header-text: #f0f6fc;
+  --link-color: #58a6ff;
+  --sidebar-bg: #161b22;
+  --footer-bg: #161b22;
+  --footer-text: #8b949e;
+  --card-bg: #161b22;
+  --border-color: #30363d;
+  --tag-bg: #238636;
+  --tag-text: #c9d1d9;
+  --muted-text: #8b949e;
 }
 
 header {
