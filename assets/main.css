@@ -133,3 +133,18 @@ article + article {
   font-size: 0.875rem;
   margin: 0;
 }
+
+.card-tags,
+.tags {
+  margin-top: 0.25rem;
+}
+
+.tag {
+  display: inline-block;
+  background: #e0e0e0;
+  color: #333;
+  padding: 0 0.4rem;
+  margin-right: 0.25rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}

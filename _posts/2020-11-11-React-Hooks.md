@@ -2,6 +2,10 @@
 layout: post
 title:  "Руководство по React Hooks: Чистый и эффективный код на функциональных компонентах"
 date:   2020-11-11 10:00:00 +0000   # optional time and timezone
+tags:
+  - react
+  - hooks
+  - javascript
 ---
 
 

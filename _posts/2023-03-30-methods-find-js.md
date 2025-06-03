@@ -2,6 +2,10 @@
 layout: post
 title:  "Метод Array.prototype.find() в JavaScript"
 date:   2023-03-30 10:00:00 +0000   # optional time and timezone
+tags:
+  - javascript
+  - array
+  - find
 ---
 
 

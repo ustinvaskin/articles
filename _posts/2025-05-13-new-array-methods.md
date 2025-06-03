@@ -2,6 +2,10 @@
 layout: post
 title:  "Новые методы массивов в JavaScript"
 date:   2025-05-13 10:00:00 +0000   # optional time and timezone
+tags:
+  - javascript
+  - array
+  - methods
 ---
 
 # Новые методы массивов в JavaScript
