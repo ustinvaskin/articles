@@ -260,7 +260,7 @@ article + article {
   padding: 1rem;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-right: 4px solid var(--link-color);
+  border-left: 4px solid var(--link-color);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s, transform 0.2s;
