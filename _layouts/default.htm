@@ -27,28 +27,19 @@
 
         <div class="subscribe">
           <h3>Subscribe</h3>
-          <form id="subscribe-form"   action="https://formspree.io/f/xldnekqn" method="POST">
+          <form id="subscribe-form" action="https://formspree.io/f/xldnekqn" method="POST">
             <input type="email" name="email" id="subscribe-email" placeholder="Your email" required>
-
-  <button type="submit">Subscribe</button>
+            <button type="submit">Subscribe</button>
           </form>
           <p id="subscribe-message" class="hidden"></p>
         </div>
 
         <div class="contact">
           <h3>Contact Me</h3>
-          <!-- modify this form HTML and place wherever you want your form -->
-          <form action="https://formspree.io/f/xldnekqn" method="POST">
-            <label>
-              Your email:
-              <input type="email" name="email">
-            </label>
-            <label>
-              Your message:
-              <textarea name="message"></textarea>
-            </label>
-            <!-- your other form fields go here -->
-            <button type="submit">Send</button>
+          <form class="contact-form" action="https://formspree.io/f/xldnekqn" method="POST">
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+            <button type="submit">Send Message</button>
           </form>
         </div>
       </aside>
