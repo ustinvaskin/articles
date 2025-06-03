@@ -52,6 +52,25 @@
           </form>
           <p id="contact-form-message" class="form-message hidden" aria-live="polite"></p>
         </div>
+
+        <div class="recent-posts">
+          <h3>Recent Posts</h3>
+          <ul class="post-list">
+            {% for post in site.posts limit:5 %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="popular-tags">
+          <h3>Popular Tags</h3>
+          <ul class="tag-list">
+            {% assign tags_sorted = site.tags | sort: 'last' %}
+            {% for tag in tags_sorted reversed limit:5 %}
+            <li><span class="tag">{{ tag[0] }}</span> ({{ tag[1].size }})</li>
+            {% endfor %}
+          </ul>
+        </div>
       </aside>
     </div>
     <footer>
@@ -61,5 +80,14 @@
       </p>
     </footer>
     <script src="{{ '/assets/main.js' | relative_url }}" defer></script>
+    {% if site.analytics_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.analytics_id }}');
+    </script>
+    {% endif %}
   </body>
 </html>
