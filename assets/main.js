@@ -52,5 +52,31 @@ document.addEventListener('DOMContentLoaded', function () {
   populateTagFilter();
 
   filterPosts();
+
+  var subscribeForm = document.getElementById('subscribe-form');
+  if (subscribeForm) {
+    subscribeForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('subscribe-email').value;
+      var mailto = 'mailto:' + window.siteEmail +
+        '?subject=' + encodeURIComponent('Subscribe') +
+        '&body=' + encodeURIComponent('Please subscribe me: ' + email);
+      window.location.href = mailto;
+    });
+  }
+
+  var contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('contact-name').value;
+      var fromEmail = document.getElementById('contact-from-email').value;
+      var message = document.getElementById('contact-message').value;
+      var mailto = 'mailto:' + window.siteEmail +
+        '?subject=' + encodeURIComponent('Message from ' + name) +
+        '&body=' + encodeURIComponent('From: ' + fromEmail + '\n\n' + message);
+      window.location.href = mailto;
+    });
+  }
 });
 
