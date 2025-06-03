@@ -5,6 +5,27 @@ document.addEventListener('DOMContentLoaded', function () {
   var tagFilter = document.getElementById('tag-filter');
   var cards = document.querySelectorAll('.post-card');
 
+  function populateTagFilter() {
+    if (!tagFilter) return;
+    // Populate tag dropdown if it only contains the default option
+    if (tagFilter.children.length <= 1) {
+      var set = new Set();
+      cards.forEach(function (card) {
+        var tags = card.getAttribute('data-tags').split(',');
+        tags.forEach(function (t) {
+          t = t.trim();
+          if (t) set.add(t);
+        });
+      });
+      Array.from(set).sort().forEach(function (t) {
+        var option = document.createElement('option');
+        option.value = t;
+        option.textContent = t;
+        tagFilter.appendChild(option);
+      });
+    }
+  }
+
   function filterPosts() {
     var searchTerm = searchInput.value.toLowerCase();
     var yearValue = yearFilter ? yearFilter.value : '';
@@ -27,5 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (searchInput) searchInput.addEventListener('input', filterPosts);
   if (yearFilter) yearFilter.addEventListener('change', filterPosts);
   if (tagFilter) tagFilter.addEventListener('change', filterPosts);
+
+  populateTagFilter();
+
+  filterPosts();
 });
 
