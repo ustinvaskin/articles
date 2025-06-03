@@ -11,6 +11,8 @@ tags:
 
 # Руководство по React Hooks: Чистый и эффективный код на функциональных компонентах
 
+> 📌 **Note:** статья основана на примерах из React 16.8 и новее.
+
 **Краткое содержание**
 
 В этом руководстве вы узнаете, зачем использовать React Hooks, как они облегчают разработку на функциональных компонентах и как создавать собственные хуки для повторного использования логики.
@@ -32,7 +34,7 @@ React Hooks появились в версии 16.8 (2019) и позволили
 
 ### Пример классического компонента
 
-```
+```jsx
 class Header extends React.Component {
   render() {
     return (
@@ -45,7 +47,7 @@ class Header extends React.Component {
 }
 ```
 Аналог на функциональном компоненте с Hooks
-```
+```jsx
 const Header = () => (
   <div>
     <h1>Title</h1>
@@ -59,7 +61,7 @@ const Header = () => (
 
 `useState`
 
-```
+```jsx
 import React, { useState } from 'react';
 
 function Example() {
@@ -79,7 +81,7 @@ function Example() {
 
 `useEffect`
 
-```
+```jsx
 import React, { useState, useEffect } from 'react';
 
 function DataFetcher({ url }) {
@@ -99,7 +101,7 @@ function DataFetcher({ url }) {
 ### Создание собственных хуков
 Кастомный хук — это функция, имя которой начинается с use и использует другие хуки внутри.
 
-```
+```js
 import { useState } from 'react';
 
 export function useCounter(start = 0, step = 1, end = Infinity) {
@@ -115,7 +117,7 @@ export function useCounter(start = 0, step = 1, end = Infinity) {
 ### Практические примеры
 Компонент Header
 
-```
+```jsx
 const Header = () => (
   <header>
     <h1>Мой сайт</h1>
@@ -126,7 +128,7 @@ const Header = () => (
 ```
 Счётчик с useState
 
-```
+```jsx
 function ClickCounter() {
   const [count, setCount] = useState(0);
   return (
@@ -139,7 +141,7 @@ function ClickCounter() {
 `useCounter` (кастомный хук)
 
 
-```
+```jsx
 function CounterDemo() {
   const [count, increment] = useCounter(0, 5, 100);
   return (

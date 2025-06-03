@@ -1,5 +1,7 @@
 # Articles
 
+> **Tip:** clone the repo and run Jekyll locally to preview posts before publishing.
+
 This repository contains the source for my personal blog which is built with [Jekyll](https://jekyllrb.com/). It is served through GitHub Pages at <https://ustinvaskin.github.io/articles>.
 
 ## Getting Started
