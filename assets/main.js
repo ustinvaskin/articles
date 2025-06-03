@@ -15,11 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
       : 'dark_mode';
   };
 
+  const hljsLight = document.getElementById('hljs-theme-light');
+  const hljsDark = document.getElementById('hljs-theme-dark');
+
   const applyTheme = (theme) => {
     if (theme === 'dark') {
       document.body.classList.add('dark');
+      if (hljsLight) hljsLight.disabled = true;
+      if (hljsDark) hljsDark.disabled = false;
     } else {
       document.body.classList.remove('dark');
+      if (hljsLight) hljsLight.disabled = false;
+      if (hljsDark) hljsDark.disabled = true;
     }
   };
 
