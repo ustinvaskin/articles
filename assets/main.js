@@ -154,5 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
     hljs.highlightAll();
   }
 
+  const loader = document.getElementById('loading-screen');
+  if (loader) {
+    setTimeout(() => loader.classList.add('hidden'), 300);
+  }
+
 });
 
