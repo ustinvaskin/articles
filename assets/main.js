@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tagFilter = document.getElementById('tag-filter');
   const clearBtn = document.getElementById('clear-filters');
   const cards = Array.from(document.querySelectorAll('.post-card'));
+  const noPostsMessage = document.getElementById('no-posts-message');
 
   const updateToggleIcon = () => {
     if (!toggle) return;
@@ -80,6 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchesTag = !tagValue || tags.includes(tagValue);
 
       card.style.display = matchesSearch && matchesYear && matchesTag ? 'flex' : 'none';
+    }
+
+    const anyVisible = cards.some(card => card.style.display !== 'none');
+    if (noPostsMessage) {
+      noPostsMessage.style.display = anyVisible ? 'none' : 'block';
     }
   };
 
