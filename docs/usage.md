@@ -31,3 +31,15 @@ Content goes below the front matter. Use Markdown for formatting.
 ## Custom Forms
 
 The default layout contains subscribe and contact forms powered by [Formspree](https://formspree.io/). Replace the placeholder Formspree IDs in `_layouts/default.htm` with your own so that submissions are routed to you.
+
+## Code Cards
+
+Use code cards to highlight important examples in posts. Add the class after a fenced code block to apply the styling:
+
+
+```js
+console.log("hello");
+```
+{: .code-card}
+
+This will render the block inside a styled card.
