@@ -1,19 +1,19 @@
 :root {
-  /* Updated colour palette */
-  --bg-color: #f2f2f5;
-  --text-color: #000;
-  --header-bg: #5a23d7;
-  --header-bg2: #3720a3;
+  /* Material inspired colour palette */
+  --bg-color: #fafafa;
+  --text-color: #212121;
+  --header-bg: #1976d2;
+  --header-bg2: #1565c0;
   --header-text: #fff;
-  --link-color: #5a23d7;
+  --link-color: #1976d2;
   --sidebar-bg: #fff;
-  --footer-bg: #f9f9fb;
-  --footer-text: #000;
+  --footer-bg: #fafafa;
+  --footer-text: #212121;
   --card-bg: #fff;
-  --border-color: #e4e4f6;
-  --tag-bg: #5a23d7aa;
-  --tag-text: #fff;
-  --muted-text: #696969;
+  --border-color: #e0e0e0;
+  --tag-bg: #1976d233;
+  --tag-text: #1976d2;
+  --muted-text: #616161;
 }
 
 body {
@@ -27,18 +27,18 @@ body {
 body.dark {
   --bg-color: #121212;
   --text-color: #e0e0e0;
-  --header-bg: #3720a3;
-  --header-bg2: #5a23d7;
+  --header-bg: #2196f3;
+  --header-bg2: #1976d2;
   --header-text: #eee;
-  --link-color: #a78fff;
-  --sidebar-bg: #1c1c1c;
-  --footer-bg: #1c1c1c;
-  --footer-text: #eee;
-  --card-bg: #1c1c1c;
-  --border-color: #444;
-  --tag-bg: #3720a3;
-  --tag-text: #fff;
-  --muted-text: #aaa;
+  --link-color: #90caf9;
+  --sidebar-bg: #1e1e1e;
+  --footer-bg: #1e1e1e;
+  --footer-text: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --border-color: #333;
+  --tag-bg: #1565c0;
+  --tag-text: #e0e0e0;
+  --muted-text: #ccc;
 }
 
 header {
@@ -49,8 +49,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e5e5e5;
-  box-shadow: none;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -85,7 +85,7 @@ header nav {
 
 .nav-icon:hover,
 .nav-icon:focus {
-  background: rgba(90, 35, 215, 0.1);
+  background: rgba(25, 118, 210, 0.1);
   color: var(--link-color);
   outline: none;
 }
@@ -235,10 +235,17 @@ article + article {
   background: var(--header-bg);
   color: var(--header-text);
   cursor: pointer;
+  transition: background 0.2s;
   white-space: nowrap;
   flex: 1 1 160px;
   height: 2.5rem;
   box-sizing: border-box;
+}
+
+.filters button:hover,
+.filters button:focus {
+  background: var(--header-bg2);
+  outline: none;
 }
 
 .post-cards {
@@ -252,6 +259,7 @@ article + article {
   align-items: center;
   padding: 1rem;
   background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s, transform 0.2s;
