@@ -8,6 +8,7 @@
   --footer-bg: #f4f4f4;
   --footer-text: #222;
   --card-bg: #fff;
+  --border-color: #e0e0e0;
   --tag-bg: #e5e5ff;
   --tag-text: #333;
   --muted-text: #555;
@@ -31,6 +32,7 @@ body.dark {
   --footer-bg: #1c1c1c;
   --footer-text: #eee;
   --card-bg: #2a2a2a;
+  --border-color: #444;
   --tag-bg: #444;
   --tag-text: #eee;
   --muted-text: #aaa;
@@ -113,6 +115,19 @@ main a:focus {
   background: var(--sidebar-bg);
   padding: 2rem;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.sidebar p {
+  margin: 0.25rem 0;
+  line-height: 1.4;
 }
 
 footer {
@@ -259,9 +274,11 @@ form {
 form input,
 form textarea {
   padding: 0.75rem;
-  border: 1px solid #bbb;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font: inherit;
+  width: 100%;
+  box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -307,6 +324,7 @@ form button:active {
   background: var(--card-bg);
   padding: 1rem;
   border-radius: 8px;
+  border: 1px solid var(--border-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 1rem;
 }
@@ -314,6 +332,7 @@ form button:active {
 .subscribe h3,
 .contact h3 {
   margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 pre {
