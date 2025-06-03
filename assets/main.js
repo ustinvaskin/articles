@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   const yearFilter = document.getElementById('year-filter');
   const tagFilter = document.getElementById('tag-filter');
+  const clearBtn = document.getElementById('clear-filters');
   const cards = Array.from(document.querySelectorAll('.post-card'));
 
   const updateToggleIcon = () => {
@@ -85,6 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInput?.addEventListener('input', filterPosts);
   yearFilter?.addEventListener('change', filterPosts);
   tagFilter?.addEventListener('change', filterPosts);
+  clearBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    if (yearFilter) yearFilter.value = '';
+    if (tagFilter) tagFilter.value = '';
+    filterPosts();
+  });
 
   populateTagFilter();
 
