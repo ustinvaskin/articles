@@ -64,12 +64,15 @@
 
         <div class="popular-tags">
           <h3>Popular Tags</h3>
-          <ul class="tag-list">
-            {% assign tags_sorted = site.tags | sort: 'last' %}
-            {% for tag in tags_sorted reversed limit:5 %}
-            <li><span class="tag">{{ tag[0] }}</span> ({{ tag[1].size }})</li>
-            {% endfor %}
-          </ul>
+        {% assign tags_array = site.tags | map: "first" %}
+<ul class="tag-list">
+  {% assign tags_sorted = site.tags %}
+  {% for tag in tags_sorted %}
+    {% assign tag_name = tag[0] %}
+    {% assign tag_posts = tag[1] %}
+    <li><span class="tag">{{ tag_name }}</span> ({{ tag_posts | size }})</li>
+  {% endfor %}
+</ul>
         </div>
       </aside>
     </div>
