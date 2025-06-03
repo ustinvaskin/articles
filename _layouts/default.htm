@@ -34,19 +34,23 @@
         <div class="subscribe">
           <h3>Subscribe</h3>
           <form id="subscribe-form" action="https://formspree.io/f/xldnekqn" method="POST">
-            <input type="email" name="email" id="subscribe-email" placeholder="Your email" required>
+            <label for="subscribe-email">Email address</label>
+            <input type="email" name="email" id="subscribe-email" placeholder="Your email" aria-describedby="subscribe-message" required>
             <button type="submit">Subscribe</button>
           </form>
-          <p id="subscribe-message" class="hidden"></p>
+          <p id="subscribe-message" class="form-message hidden" aria-live="polite"></p>
         </div>
 
         <div class="contact">
           <h3>Contact Me</h3>
           <form class="contact-form" action="https://formspree.io/f/xldnekqn" method="POST">
-            <input type="email" name="email" placeholder="Your email" required>
-            <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+            <label for="contact-email">Email address</label>
+            <input type="email" id="contact-email" name="email" placeholder="Your email" aria-describedby="contact-form-message" required>
+            <label for="contact-text">Message</label>
+            <textarea id="contact-text" name="message" rows="4" placeholder="Your message" aria-describedby="contact-form-message" required></textarea>
             <button type="submit">Send Message</button>
           </form>
+          <p id="contact-form-message" class="form-message hidden" aria-live="polite"></p>
         </div>
       </aside>
     </div>
