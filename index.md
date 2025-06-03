@@ -11,7 +11,7 @@ title: "My Articles"
 
 Here’s a list of my posts:
 
-<ul>
+<ul class="post-list">
   {% for post in site.posts %}
     <li>
       <a href="{{ post.url | relative_url }}">
