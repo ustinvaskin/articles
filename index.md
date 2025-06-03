@@ -15,13 +15,14 @@ Here’s a list of my posts:
     <option value="{{ group.name }}">{{ group.name }}</option>
     {% endfor %}
   </select>
-  {% assign all_tags = site.tags | map: 'first' | sort %}
+  {% assign tags_sorted = site.tags | sort %}
   <select id="tag-filter">
     <option value="">All Tags</option>
-    {% for tag in all_tags %}
-    <option value="{{ tag }}">{{ tag }}</option>
+    {% for tag in tags_sorted %}
+    <option value="{{ tag[0] }}">{{ tag[0] }} ({{ tag[1].size }})</option>
     {% endfor %}
   </select>
+  <button id="clear-filters" type="button">Clear Filters</button>
 </div>
 
 <div class="post-cards">
