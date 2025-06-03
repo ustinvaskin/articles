@@ -209,6 +209,7 @@ article + article {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .filters input,
@@ -216,6 +217,7 @@ article + article {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  flex: 1 1 160px;
 }
 .filters button {
   padding: 0.5rem 0.75rem;
@@ -224,6 +226,7 @@ article + article {
   background: var(--header-bg);
   color: var(--header-text);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .post-cards {
@@ -473,6 +476,17 @@ body.dark .hljs-comment {
   .sidebar {
     margin-top: 2rem;
     padding: 1rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters input,
+  .filters select,
+  .filters button {
+    width: 100%;
   }
 }
 
