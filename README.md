@@ -31,7 +31,15 @@ includes a small "Copy" button to quickly copy the snippet to your clipboard.
 
 ## Forms
 
-Both the subscribe and contact forms use [Formspree](https://formspree.io/) to collect submissions. Update the Formspree endpoint URLs in `_layouts/default.htm` with your own form IDs so that messages and email addresses are sent to your account.
+Both the subscribe and contact forms rely on [Formspree](https://formspree.io/) for handling submissions. To configure them:
+
+1. Create the forms in your Formspree dashboard.
+2. Copy each form's endpoint URL.
+3. Edit `_layouts/default.htm` and replace the `action` attribute of both forms with your endpoints.
+
+## Dark Mode
+
+A dark colour scheme is built in. Click the moon icon in the header to toggle between light and dark styles. Your preference is stored in `localStorage` and highlight.js loads the matching theme. Adjust the palette in `assets/main.css` under `body.dark` if desired.
 
 ## Tests
 
