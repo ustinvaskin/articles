@@ -27,11 +27,12 @@
 
         <div class="subscribe">
           <h3>Subscribe</h3>
-          <form id="subscribe-form" action="https://formspree.io/f/xldnekqn" method="POST">
-            <input type="email" id="subscribe-email" name="email" placeholder="Your email" required>
-            <input type="hidden" name="form" value="subscribe">
+          <form id="subscribe-form" action="https://formspree.io/f/FORM_ENDPOINT" method="POST">
+            <input type="email" name="email" id="subscribe-email" placeholder="Your email" required>
+
             <button type="submit">Subscribe</button>
           </form>
+          <p id="subscribe-message" class="hidden"></p>
         </div>
 
         <div class="contact">

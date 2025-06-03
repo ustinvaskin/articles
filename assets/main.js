@@ -53,6 +53,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
   filterPosts();
 
-  // Forms submit directly to Formspree; no custom JavaScript needed.
 });
 
