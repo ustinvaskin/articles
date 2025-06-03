@@ -10,6 +10,8 @@ tags:
 
 # Structuring Your React UI with Atomic Design
 
+> 📌 **Tip:** начинайте с минимальных «атомов» и выделяйте компоненты только при необходимости повторного использования.
+
 Here’s a little guide to structuring your React UI using Atomic Design and balancing component granularity—and deep dives into performance overhead, indirection pitfalls, and other common trade‑offs.
 
 ---

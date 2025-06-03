@@ -1,5 +1,7 @@
 # Usage Guide
 
+> **Note:** this guide covers running the Jekyll site locally and formatting new posts.
+
 This documentation explains how to work with the blog locally and how to write new articles.
 
 ## Local Development
@@ -14,7 +16,7 @@ This documentation explains how to work with the blog locally and how to write n
 All posts live in the `_posts` directory and must follow the standard Jekyll filename format: `YEAR-MONTH-DAY-title.md`.
 Each post must contain YAML front matter with at least the following fields:
 
-```
+```yaml
 ---
 layout: post
 title: "Your title"
