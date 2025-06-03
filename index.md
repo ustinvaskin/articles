@@ -25,6 +25,8 @@ Here’s a list of my posts:
   <button id="clear-filters" type="button">Clear Filters</button>
 </div>
 
+<div id="no-posts-message" class="info-alert hidden" role="alert">No posts found.</div>
+
 <div class="post-cards">
   {% for post in site.posts %}
     <div class="post-card" data-title="{{ post.title }}" data-year="{{ post.date | date: '%Y' }}" data-tags="{{ post.tags | join: ',' }}">

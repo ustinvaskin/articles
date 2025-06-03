@@ -382,6 +382,21 @@ form button:active {
   display: none;
 }
 
+.info-alert {
+  padding: 0.75rem 1rem;
+  border: 1px solid #90caf9;
+  background: #e8f4fd;
+  color: #0d47a1;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+body.dark .info-alert {
+  background: #0d47a1;
+  color: #e8f4fd;
+  border-color: #42a5f5;
+}
+
 .form-message {
   font-size: 0.875rem;
   margin-top: -0.25rem;
