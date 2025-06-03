@@ -1,9 +1,30 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('theme-toggle');
   const searchInput = document.getElementById('search-input');
   const yearFilter = document.getElementById('year-filter');
   const tagFilter = document.getElementById('tag-filter');
   const cards = Array.from(document.querySelectorAll('.post-card'));
+
+  const applyTheme = (theme) => {
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  };
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const dark = document.body.classList.toggle('dark');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  });
 
   const populateTagFilter = () => {
     if (!tagFilter || tagFilter.children.length > 1) return;
