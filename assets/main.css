@@ -84,3 +84,52 @@ article + article {
 .disclaimer {
   margin-bottom: 1em;
 }
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filters input,
+.filters select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.post-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card .material-icons {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: #1976d2;
+}
+
+.post-card a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.post-card a:hover {
+  text-decoration: underline;
+}
+
+.card-date {
+  color: #666;
+  font-size: 0.875rem;
+  margin: 0;
+}
