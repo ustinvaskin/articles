@@ -2,6 +2,6 @@
 
 This repository contains the source for my GitHub Pages blog.
 
-## Subscription form
+## Forms
 
-The subscribe form uses [Formspree](https://formspree.io/) to collect emails. Replace `FORM_ENDPOINT` in `_layouts/default.htm` with your own Formspree form ID. Submitted emails will be stored by Formspree so you can send updates later.
+Both the subscribe and contact forms use [Formspree](https://formspree.io/) to collect submissions. Update the Formspree endpoint URLs in `_layouts/default.htm` with your own form IDs so that messages and email addresses are sent to your account.
