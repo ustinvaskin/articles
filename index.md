@@ -3,8 +3,8 @@ layout: default
 title: "My Articles"
 ---
 
-<p style="margin-bottom:1em;">
-  <a href="https://ustinvaskin.github.io/disclaimer-blog/" target="_blank" rel="noopener">
+<p class="disclaimer">
+  <a href="https://ustinvaskin.github.io/disclaimer-blog/" target="_blank" rel="noopener noreferrer">
     Read the Disclaimer
   </a>
 </p>
