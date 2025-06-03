@@ -8,5 +8,10 @@ layout: default
       {{ page.date | date: "%Y-%m-%d" }}
     </time>
   </p>
+  {% if page.tags %}
+  <p class="tags">
+    {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+  </p>
+  {% endif %}
   {{ content }}
 </article>

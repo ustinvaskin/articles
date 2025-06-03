@@ -2,6 +2,10 @@
 layout: post
 title:  "Тайная жизнь примитивов JavaScript"
 date:   2020-10-10 10:00:00 +0000   # optional time and timezone
+tags:
+  - javascript
+  - primitives
+  - basics
 ---
 
 ## Тайная жизнь примитивов JavaScript

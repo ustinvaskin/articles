@@ -2,6 +2,10 @@
 layout: post
 title:  "Atomic Design"
 date:   2025-05-13 10:00:00 +0000   # optional time and timezone
+tags:
+  - react
+  - atomic design
+  - ui
 ---
 
 # Structuring Your React UI with Atomic Design
