@@ -292,3 +292,27 @@ form button:active {
 .contact h3 {
   margin-top: 0;
 }
+
+pre {
+  background: #f6f8fa;
+  padding: 1rem;
+  overflow: auto;
+  border-radius: 6px;
+}
+
+body.dark pre {
+  background: #1e1e1e;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  background: var(--header-bg);
+  color: var(--header-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

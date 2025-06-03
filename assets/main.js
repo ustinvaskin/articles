@@ -83,5 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   filterPosts();
 
+  document.querySelectorAll('pre code').forEach(block => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'copy-btn';
+    button.textContent = 'Copy';
+    button.addEventListener('click', () => {
+      navigator.clipboard.writeText(block.innerText).then(() => {
+        button.textContent = 'Copied!';
+        setTimeout(() => (button.textContent = 'Copy'), 2000);
+      });
+    });
+    const pre = block.parentElement;
+    if (pre && pre.tagName === 'PRE') {
+      pre.style.position = 'relative';
+      pre.appendChild(button);
+    }
+  });
+
+  if (window.hljs) {
+    hljs.highlightAll();
+  }
+
 });
 
