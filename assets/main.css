@@ -421,12 +421,13 @@ body.dark .hljs-comment {
 
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   header nav {
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 
   .wrapper {
