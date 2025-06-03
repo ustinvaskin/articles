@@ -3,6 +3,7 @@
   --bg-color: #f2f2f5;
   --text-color: #000;
   --header-bg: #5a23d7;
+  --header-bg2: #3720a3;
   --header-text: #fff;
   --link-color: #5a23d7;
   --sidebar-bg: #fff;
@@ -27,6 +28,7 @@ body.dark {
   --bg-color: #121212;
   --text-color: #e0e0e0;
   --header-bg: #3720a3;
+  --header-bg2: #5a23d7;
   --header-text: #eee;
   --link-color: #a78fff;
   --sidebar-bg: #1c1c1c;
@@ -40,7 +42,7 @@ body.dark {
 }
 
 header {
-  background: var(--header-bg);
+  background: linear-gradient(90deg, var(--header-bg), var(--header-bg2));
   color: var(--header-text);
   padding: 1.5rem 1rem;
   margin-bottom: 2rem;
@@ -162,6 +164,27 @@ footer {
   text-decoration: underline;
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
+}
+
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag-list li {
+  margin: 0.25rem 0;
+}
+
+.tag-list a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.tag-list a:hover,
+.tag-list a:focus {
+  text-decoration: underline;
+  outline: none;
 }
 
 article + article {
@@ -360,7 +383,9 @@ body.dark .form-message.error {
 }
 
 .subscribe,
-.contact {
+.contact,
+.recent-posts,
+.popular-tags {
   background: var(--card-bg);
   padding: 1rem;
   border-radius: 8px;
@@ -370,7 +395,9 @@ body.dark .form-message.error {
 }
 
 .subscribe h3,
-.contact h3 {
+.contact h3,
+.recent-posts h3,
+.popular-tags h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
