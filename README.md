@@ -50,20 +50,6 @@ Basic sanity tests live in the `tests/` directory. They ensure every post contai
 python3 tests/test_posts.py
 ```
 
-For additional checks the development environment includes
-[`markdownlint`](https://github.com/markdownlint/markdownlint) and
-[`html-proofer`](https://github.com/gjtorikian/html-proofer). Run them with:
-
-```bash
-bundle exec mdl .
-bundle exec htmlproofer ./_site --disable-external
-```
-
-`htmlproofer` expects the site to be built first with `bundle exec jekyll build`.
-These tools can be run locally or integrated into continuous integration
-workflows. A helper script at `scripts/check.sh` runs all checks in one go and
-is executed automatically by the GitHub Actions workflow defined in
-`.github/workflows/ci.yml`.
 
 ## Contributing
 
