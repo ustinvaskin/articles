@@ -479,14 +479,15 @@ body.dark .hljs-comment {
   }
 
   .filters {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .filters input,
   .filters select,
   .filters button {
-    width: 100%;
+    flex: 1 1 160px;
   }
 }
 
