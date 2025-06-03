@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const tagFilter = document.getElementById('tag-filter');
   const clearBtn = document.getElementById('clear-filters');
   const cards = Array.from(document.querySelectorAll('.post-card'));
+  const cardData = cards.map(card => ({
+    el: card,
+    title: (card.dataset.title || '').toLowerCase(),
+    year: card.dataset.year || '',
+    tags: (card.dataset.tags || '')
+      .split(',')
+      .map(t => t.trim())
+      .filter(Boolean)
+  }));
   const noPostsMessage = document.getElementById('no-posts-message');
 
   const updateToggleIcon = () => {
@@ -71,25 +80,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearValue = yearFilter?.value ?? '';
     const tagValue = tagFilter?.value ?? '';
 
-    for (const card of cards) {
-      const title = card.dataset.title.toLowerCase();
-      const year = card.dataset.year;
-      const tags = card.dataset.tags.split(',');
+    for (const data of cardData) {
+      const matchesSearch = data.title.includes(searchTerm);
+      const matchesYear = !yearValue || data.year === yearValue;
+      const matchesTag = !tagValue || data.tags.includes(tagValue);
 
-      const matchesSearch = title.includes(searchTerm);
-      const matchesYear = !yearValue || year === yearValue;
-      const matchesTag = !tagValue || tags.includes(tagValue);
-
-      card.style.display = matchesSearch && matchesYear && matchesTag ? 'flex' : 'none';
+      data.el.style.display = matchesSearch && matchesYear && matchesTag ? 'flex' : 'none';
     }
 
-    const anyVisible = cards.some(card => card.style.display !== 'none');
+    const anyVisible = cardData.some(data => data.el.style.display !== 'none');
     if (noPostsMessage) {
       noPostsMessage.style.display = anyVisible ? 'none' : 'block';
     }
   };
 
-  searchInput?.addEventListener('input', filterPosts);
+  const debounce = (fn, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn(...args), delay);
+    };
+  };
+
+  const debouncedFilter = debounce(filterPosts, 200);
+  searchInput?.addEventListener('input', debouncedFilter);
   yearFilter?.addEventListener('change', filterPosts);
   tagFilter?.addEventListener('change', filterPosts);
   clearBtn?.addEventListener('click', () => {
