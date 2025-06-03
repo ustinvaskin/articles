@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const tagFilter = document.getElementById('tag-filter');
   const cards = Array.from(document.querySelectorAll('.post-card'));
 
+  const updateToggleIcon = () => {
+    if (!toggle) return;
+    const icon = toggle.querySelector('.material-icons');
+    if (!icon) return;
+    icon.textContent = document.body.classList.contains('dark')
+      ? 'light_mode'
+      : 'dark_mode';
+  };
+
   const applyTheme = (theme) => {
     if (theme === 'dark') {
       document.body.classList.add('dark');
@@ -20,10 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     applyTheme('dark');
   }
+  updateToggleIcon();
 
   toggle?.addEventListener('click', () => {
     const dark = document.body.classList.toggle('dark');
     localStorage.setItem('theme', dark ? 'dark' : 'light');
+    updateToggleIcon();
   });
 
   const populateTagFilter = () => {

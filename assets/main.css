@@ -62,17 +62,28 @@ header a {
   text-decoration: none;
 }
 
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .nav-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
   color: var(--header-text);
-  transition: color 0.2s;
+  transition: background 0.2s, color 0.2s;
   background: none;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .nav-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
   color: #bbdefb;
 }
 
