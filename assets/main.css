@@ -220,6 +220,8 @@ article + article {
   flex: 1 1 160px;
   background: var(--card-bg);
   color: var(--text-color);
+  height: 2.5rem;
+  box-sizing: border-box;
 }
 
 .filters select option {
@@ -234,6 +236,9 @@ article + article {
   color: var(--header-text);
   cursor: pointer;
   white-space: nowrap;
+  flex: 1 1 160px;
+  height: 2.5rem;
+  box-sizing: border-box;
 }
 
 .post-cards {
