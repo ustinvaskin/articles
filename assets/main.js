@@ -53,50 +53,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
   filterPosts();
 
-  var subscribeForm = document.getElementById('subscribe-form');
-  var subscribeMessage = document.getElementById('subscribe-message');
-  if (subscribeForm) {
-    subscribeForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var data = new FormData(subscribeForm);
-      fetch(subscribeForm.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(function (response) {
-        if (response.ok) {
-          if (subscribeMessage) {
-            subscribeMessage.textContent = 'Thank you for subscribing!';
-            subscribeMessage.classList.remove('hidden');
-          }
-          subscribeForm.reset();
-        } else {
-          if (subscribeMessage) {
-            subscribeMessage.textContent = 'Oops! There was a problem.';
-            subscribeMessage.classList.remove('hidden');
-          }
-        }
-      }).catch(function () {
-        if (subscribeMessage) {
-          subscribeMessage.textContent = 'Oops! There was a problem.';
-          subscribeMessage.classList.remove('hidden');
-        }
-      });
-    });
-  }
-
-  var contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = document.getElementById('contact-name').value;
-      var fromEmail = document.getElementById('contact-from-email').value;
-      var message = document.getElementById('contact-message').value;
-      var mailto = 'mailto:' + window.siteEmail +
-        '?subject=' + encodeURIComponent('Message from ' + name) +
-        '&body=' + encodeURIComponent('From: ' + fromEmail + '\n\n' + message);
-      window.location.href = mailto;
-    });
-  }
 });
 
