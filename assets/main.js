@@ -54,14 +54,34 @@ document.addEventListener('DOMContentLoaded', function () {
   filterPosts();
 
   var subscribeForm = document.getElementById('subscribe-form');
+  var subscribeMessage = document.getElementById('subscribe-message');
   if (subscribeForm) {
     subscribeForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var email = document.getElementById('subscribe-email').value;
-      var mailto = 'mailto:' + window.siteEmail +
-        '?subject=' + encodeURIComponent('Subscribe') +
-        '&body=' + encodeURIComponent('Please subscribe me: ' + email);
-      window.location.href = mailto;
+      var data = new FormData(subscribeForm);
+      fetch(subscribeForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          if (subscribeMessage) {
+            subscribeMessage.textContent = 'Thank you for subscribing!';
+            subscribeMessage.classList.remove('hidden');
+          }
+          subscribeForm.reset();
+        } else {
+          if (subscribeMessage) {
+            subscribeMessage.textContent = 'Oops! There was a problem.';
+            subscribeMessage.classList.remove('hidden');
+          }
+        }
+      }).catch(function () {
+        if (subscribeMessage) {
+          subscribeMessage.textContent = 'Oops! There was a problem.';
+          subscribeMessage.classList.remove('hidden');
+        }
+      });
     });
   }
 

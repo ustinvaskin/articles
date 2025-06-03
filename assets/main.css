@@ -209,3 +209,7 @@ form button {
 form button:hover {
   background: #0d47a1;
 }
+
+.hidden {
+  display: none;
+}
