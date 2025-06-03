@@ -24,6 +24,11 @@ This repository contains the source for my personal blog which is built with [Je
 - `assets/` – JavaScript and CSS used by the layouts.
 - `docs/` – Additional project documentation.
 
+## Syntax Highlighting
+
+Code blocks use [highlight.js](https://highlightjs.org/) for styling. Each block
+includes a small "Copy" button to quickly copy the snippet to your clipboard.
+
 ## Forms
 
 Both the subscribe and contact forms use [Formspree](https://formspree.io/) to collect submissions. Update the Formspree endpoint URLs in `_layouts/default.htm` with your own form IDs so that messages and email addresses are sent to your account.
