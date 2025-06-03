@@ -41,9 +41,15 @@ links and HTML:
 python3 tests/test_posts.py
 ```
 
-Additional tools such as
-[markdownlint](https://github.com/markdownlint/markdownlint) help ensure a
-consistent Markdown style, while
-[htmlproofer](https://github.com/gjtorikian/html-proofer) checks for broken links
-and malformed HTML. Integrating these checks into your workflow will help keep
-the blog error free.
+Additional tools are available via Bundler:
+
+```bash
+bundle exec mdl .
+bundle exec jekyll build
+bundle exec htmlproofer ./_site --disable-external
+```
+
+`markdownlint` enforces a consistent Markdown style and `htmlproofer` catches
+broken links or malformed HTML. Integrating these checks into your workflow will
+help keep the blog error free.
+You can also run `scripts/check.sh` to execute all of the above commands at once.
