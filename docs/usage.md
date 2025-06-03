@@ -41,9 +41,3 @@ links and HTML:
 python3 tests/test_posts.py
 ```
 
-Additional tools such as
-[markdownlint](https://github.com/markdownlint/markdownlint) help ensure a
-consistent Markdown style, while
-[htmlproofer](https://github.com/gjtorikian/html-proofer) checks for broken links
-and malformed HTML. Integrating these checks into your workflow will help keep
-the blog error free.

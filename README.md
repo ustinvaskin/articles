@@ -50,12 +50,6 @@ Basic sanity tests live in the `tests/` directory. They ensure every post contai
 python3 tests/test_posts.py
 ```
 
-For additional checks consider using tools such as
-[`markdownlint`](https://github.com/markdownlint/markdownlint) to enforce
-consistent Markdown style and
-[`htmlproofer`](https://github.com/gjtorikian/html-proofer) to detect broken
-links or invalid HTML before publishing. These tools can be run locally or
-integrated into continuous integration workflows.
 
 ## Contributing
 
