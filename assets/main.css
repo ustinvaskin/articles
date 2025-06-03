@@ -11,6 +11,9 @@
   --tag-bg: #e0e0e0;
   --tag-text: #333;
   --muted-text: #666;
+  --code-bg: #f6f8fa;
+  --code-border: #ddd;
+  --code-font: 'Source Code Pro', monospace;
 }
 
 body {
@@ -34,6 +37,9 @@ body.dark {
   --tag-bg: #333;
   --tag-text: #eee;
   --muted-text: #aaa;
+  --code-bg: #1e1e1e;
+  --code-border: #333;
+  --code-font: 'Source Code Pro', monospace;
 }
 
 header {
@@ -280,4 +286,30 @@ form button:active {
 .subscribe h3,
 .contact h3 {
   margin-top: 0;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 1rem;
+  border: 1px solid var(--code-border);
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: var(--code-font);
+}
+
+.code-card {
+  background: var(--card-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.code-card pre {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--code-font);
 }
