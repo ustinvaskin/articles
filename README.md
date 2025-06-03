@@ -35,7 +35,7 @@ Both the subscribe and contact forms use [Formspree](https://formspree.io/) to c
 
 ## Tests
 
-Basic sanity tests live in the `tests/` directory. They ensure every post contains valid YAML front matter. Run them with:
+Basic sanity tests live in the `tests/` directory. They ensure every post contains valid YAML front matter and that any links are valid and inline HTML is well formed. Run them with:
 
 ```bash
 python3 tests/test_posts.py
