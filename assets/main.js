@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearFilter = document.getElementById('year-filter');
   const tagFilter = document.getElementById('tag-filter');
   const clearBtn = document.getElementById('clear-filters');
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.loading) img.loading = 'lazy';
+  });
   const cards = Array.from(document.querySelectorAll('.post-card'));
   const cardData = cards.map(card => ({
     el: card,
