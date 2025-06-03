@@ -156,7 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loader = document.getElementById('loading-screen');
   if (loader) {
-    setTimeout(() => loader.classList.add('hidden'), 300);
+    const alreadyShown = localStorage.getItem('loaderShown');
+    if (alreadyShown) {
+      loader.classList.add('hidden');
+    } else {
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        localStorage.setItem('loaderShown', 'true');
+      }, 300);
+    }
   }
 
 });
