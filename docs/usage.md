@@ -31,3 +31,19 @@ Content goes below the front matter. Use Markdown for formatting.
 ## Custom Forms
 
 The default layout contains subscribe and contact forms powered by [Formspree](https://formspree.io/). Replace the placeholder Formspree IDs in `_layouts/default.htm` with your own so that submissions are routed to you.
+
+## Quality Checks
+
+Before publishing a post you can run the Python tests to validate front matter,
+links and HTML:
+
+```bash
+python3 tests/test_posts.py
+```
+
+Additional tools such as
+[markdownlint](https://github.com/markdownlint/markdownlint) help ensure a
+consistent Markdown style, while
+[htmlproofer](https://github.com/gjtorikian/html-proofer) checks for broken links
+and malformed HTML. Integrating these checks into your workflow will help keep
+the blog error free.
