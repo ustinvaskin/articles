@@ -81,11 +81,16 @@ header nav {
   cursor: pointer;
 }
 
-.nav-icon:hover,
+.nav-icon:hover {
+  background: rgba(90, 35, 215, 0.1);
+  color: var(--link-color);
+}
+
 .nav-icon:focus {
   background: rgba(90, 35, 215, 0.1);
   color: var(--link-color);
-  outline: none;
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 .wrapper {
