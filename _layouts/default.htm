@@ -15,12 +15,12 @@
   <body>
     <header>
       <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <nav>
+      <nav aria-label="Main navigation">
         <a href="{{ '/' | relative_url }}" class="nav-icon" aria-label="Home">
-          <span class="material-icons">home</span>
+          <span class="material-icons" aria-hidden="true">home</span>
         </a>
         <button id="theme-toggle" class="nav-icon" aria-label="Toggle dark mode">
-          <span class="material-icons">dark_mode</span>
+          <span class="material-icons" aria-hidden="true">dark_mode</span>
         </button>
       </nav>
     </header>
