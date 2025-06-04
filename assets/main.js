@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   const yearFilter = document.getElementById('year-filter');
   const tagFilter = document.getElementById('tag-filter');
+  const noPosts = document.getElementById('no-posts');
   const cards = Array.from(document.querySelectorAll('.post-card'));
 
   const updateToggleIcon = () => {
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearValue = yearFilter?.value ?? '';
     const tagValue = tagFilter?.value ?? '';
 
+    let visible = 0;
     for (const card of cards) {
       const title = card.dataset.title.toLowerCase();
       const year = card.dataset.year;
@@ -78,7 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchesYear = !yearValue || year === yearValue;
       const matchesTag = !tagValue || tags.includes(tagValue);
 
-      card.style.display = matchesSearch && matchesYear && matchesTag ? 'flex' : 'none';
+      const show = matchesSearch && matchesYear && matchesTag;
+      card.style.display = show ? 'flex' : 'none';
+      if (show) visible++;
+    }
+    if (noPosts) {
+      noPosts.classList.toggle('hidden', visible !== 0);
     }
   };
 

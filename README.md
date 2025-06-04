@@ -53,4 +53,4 @@ python3 tests/test_posts.py
 
 ## Contributing
 
-See the [usage guide](docs/usage.md) for instructions on writing new posts and working with the site locally.
+See the [usage guide](docs/usage.md) for detailed steps on writing new posts and working with the site locally. Use `scripts/new_post.py` to quickly generate a new post with the required front matter.

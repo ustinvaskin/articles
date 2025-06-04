@@ -41,3 +41,12 @@ links and HTML:
 python3 tests/test_posts.py
 ```
 
+
+## Publishing Workflow
+
+1. Run `scripts/new_post.py` and follow the prompts to create a new Markdown file in `_posts/` with the required front matter.
+2. Write your post content below the generated front matter.
+3. Preview the site locally with `bundle exec jekyll serve`.
+4. Run `python3 tests/test_posts.py` to ensure the post passes validation.
+5. Commit your changes and push them to GitHub.
+

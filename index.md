@@ -20,7 +20,7 @@ Here’s a list of my posts:
     <option value="">All Tags</option>
     {% for tag in all_tags %}
     <option value="{{ tag }}">{{ tag }}</option>
-    {% endfor %}
+  {% endfor %}
   </select>
 </div>
 
@@ -38,3 +38,4 @@ Here’s a list of my posts:
     </div>
   {% endfor %}
 </div>
+<p id="no-posts" class="no-posts hidden">No posts found.</p>
