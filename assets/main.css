@@ -186,6 +186,7 @@ article + article {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .filters input,
@@ -193,6 +194,12 @@ article + article {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.no-posts {
+  text-align: center;
+  font-style: italic;
+  color: var(--muted-text);
 }
 
 .post-cards {
