@@ -130,17 +130,43 @@ function App() {
   return <Child value={value} onClick={handleClick} />;
 }
 ```
+Each hook has **one clear responsibility** — and they don’t overlap.
 
 ---
 
 ## A More Realistic Pattern
 
 ```js
-const Button = React.memo(({ onClick }) => (
-  <button onClick={onClick}>Increment</button>
-));
-```
+function App() {
+  const [count, setCount] = useState(0);
 
+  const expensiveValue = useMemo(
+    () => slowFunction(count),
+    [count]
+  );
+
+  const handleClick = useCallback(() => {
+    setCount(c => c + 1);
+  }, []);
+
+  useEffect(() => {
+    console.log("Count changed:", count);
+  }, [count]);
+
+  return (
+    <div>
+      <Display value={expensiveValue} />
+      <Button onClick={handleClick} />
+    </div>
+  );
+}
+
+const Button = React.memo(function Button({ onClick }) {
+  return <button onClick={onClick}>Increment</button>;
+});
+```
+> Now the optimizations actually *matter*.
+> 
 ---
 
 ## Final Takeaway
