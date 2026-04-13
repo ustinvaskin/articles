@@ -2,19 +2,17 @@
 layout: default
 ---
 <article class="post">
-  <a href="{{ '/' | relative_url }}" class="back-icon" aria-label="Back to home">
-    <span class="material-icons">arrow_back</span>
-  </a>
-  <h1>{{ page.title }}</h1>
+  <a href="{{ '/' | relative_url }}" class="back-link">Back to articles</a>
+  <h1 class="post-title">{{ page.title }}</h1>
   <p class="meta">
-    <time datetime="{{ page.date | date_to_xmlschema }}">
-      {{ page.date | date: "%Y-%m-%d" }}
-    </time>
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
   </p>
   {% if page.tags %}
-  <p class="tags">
-    {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-  </p>
+    <p class="tags">
+      {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </p>
   {% endif %}
-  {{ content }}
+  <div class="post-body">
+    {{ content }}
+  </div>
 </article>

@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.description }}">
+    <meta name="color-scheme" content="light dark">
     <title>{{ page.title }} – {{ site.title }}</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" href="{{ '/assets/main.css' | relative_url }}" as="style">
+    <link rel="icon" href="{{ '/assets/favicon-scene.svg' | relative_url }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" as="style" crossorigin>
     <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" as="style" crossorigin>
@@ -18,84 +18,76 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <nav>
-        <a href="{{ '/' | relative_url }}" class="nav-icon" aria-label="Home">
-          <span class="material-icons">home</span>
-        </a>
-        <button id="theme-toggle" class="nav-icon" aria-label="Toggle dark mode">
-          <span class="material-icons">dark_mode</span>
-        </button>
-      </nav>
-    </header>
-    <div class="wrapper">
-      <main>{{ content }}</main>
-      <aside class="sidebar">
-        <h2>{{ site.title }}</h2>
-        <p>{{ site.email }}</p>
-        <p>{{ site.description }}</p>
-
-        <div class="subscribe">
-          <h3>Subscribe</h3>
-          <form id="subscribe-form" action="https://formspree.io/f/xldnekqn" method="POST">
-            <label for="subscribe-email">Email address</label>
-            <input type="email" name="email" id="subscribe-email" placeholder="Your email" aria-describedby="subscribe-message" required>
-            <button type="submit">Subscribe</button>
-          </form>
-          <p id="subscribe-message" class="form-message hidden" aria-live="polite"></p>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="site-header__copy">
+          <a class="site-kicker" href="https://ustinvaskin.github.io/Ustin.Vaskin/" target="_blank" rel="noreferrer noopener">about me</a>
+          <h1 class="site-title">{{ page.title }}</h1>
+          <p class="site-summary">Notes on frontend systems, design decisions, and making technical products easier to work on.</p>
         </div>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="{{ '/' | relative_url }}">articles</a>
+          <a href="https://ustinvaskin.github.io/Ustin.Vaskin/" target="_blank" rel="noreferrer noopener">about me</a>
+          <a href="mailto:{{ site.email }}">email</a>
+        </nav>
+      </header>
 
-        <div class="contact">
-          <h3>Contact Me</h3>
-          <form class="contact-form" action="https://formspree.io/f/xldnekqn" method="POST">
-            <label for="contact-email">Email address</label>
-            <input type="email" id="contact-email" name="email" placeholder="Your email" aria-describedby="contact-form-message" required>
-            <label for="contact-text">Message</label>
-            <textarea id="contact-text" name="message" rows="4" placeholder="Your message" aria-describedby="contact-form-message" required></textarea>
-            <button type="submit">Send Message</button>
-          </form>
-          <p id="contact-form-message" class="form-message hidden" aria-live="polite"></p>
-        </div>
+      <div class="page-grid">
+        <main class="main-content">{{ content }}</main>
 
-        <div class="recent-posts">
-          <h3>Recent Posts</h3>
-          <ul class="post-list">
-            {% for post in site.posts limit:5 %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
+        <aside class="side-panel">
+          <section class="side-block">
+            <div class="side-label">about</div>
+            <p class="side-text">Writing about frontend architecture, JavaScript, React, and the small decisions that make systems feel clearer.</p>
+          </section>
 
-        <div class="popular-tags">
-          <h3>Popular Tags</h3>
-        {% assign tags_array = site.tags | map: "first" %}
-<ul class="tag-list">
-  {% assign tags_sorted = site.tags %}
-  {% for tag in tags_sorted %}
-    {% assign tag_name = tag[0] %}
-    {% assign tag_posts = tag[1] %}
-    <li><span class="tag">{{ tag_name }}</span> ({{ tag_posts | size }})</li>
-  {% endfor %}
-</ul>
-        </div>
-      </aside>
+          <section class="side-block">
+            <div class="side-label">recent</div>
+            <ul class="side-list">
+              {% for post in site.posts limit:5 %}
+                <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </section>
+
+          <section class="side-block">
+            <div class="side-label">topics</div>
+            <ul class="side-list side-list--tags">
+              {% assign tags_sorted = site.tags %}
+              {% for tag in tags_sorted %}
+                {% assign tag_name = tag[0] %}
+                {% assign tag_posts = tag[1] %}
+                <li><span class="tag">{{ tag_name }}</span><span class="tag-count">{{ tag_posts | size }}</span></li>
+              {% endfor %}
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="site-footer">
+        <span class="site-footer__links">
+          <a href="mailto:{{ site.email }}">email</a>
+          <span aria-hidden="true"> • </span>
+          <a href="https://www.linkedin.com/in/ustinvaskin/" target="_blank" rel="noreferrer noopener">linkedin</a>
+          <span aria-hidden="true"> • </span>
+          <a href="https://github.com/ustinvaskin" target="_blank" rel="noreferrer noopener">github</a>
+          <span aria-hidden="true"> • </span>
+          <a href="https://www.instagram.com/ustin.m.v" target="_blank" rel="noreferrer noopener">instagram</a>
+        </span>
+        <span class="site-footer__meta">Oslo • {{ site.time | date: "%Y" }}</span>
+        <span class="site-footer__meta">made w ❤️</span>
+      </footer>
     </div>
-    <footer>
-      <p>&copy; {{ site.time | date: "%Y" }}</p>
-      <p class="disclaimer">
-        <a href="https://ustinvaskin.github.io/disclaimer-blog/" target="_blank" rel="noopener noreferrer">Read the Disclaimer</a>
-      </p>
-    </footer>
+
     <script src="{{ '/assets/main.js' | relative_url }}" defer></script>
     {% if site.analytics_id %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics_id }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ site.analytics_id }}');
-    </script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics_id }}"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ site.analytics_id }}');
+      </script>
     {% endif %}
   </body>
 </html>

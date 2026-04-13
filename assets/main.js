@@ -1,13 +1,16 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('theme-toggle');
+  const darkMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   const searchInput = document.getElementById('search-input');
   const yearFilter = document.getElementById('year-filter');
   const tagFilter = document.getElementById('tag-filter');
   const clearBtn = document.getElementById('clear-filters');
+  const hljsLight = document.getElementById('hljs-theme-light');
+  const hljsDark = document.getElementById('hljs-theme-dark');
+
   document.querySelectorAll('img').forEach(img => {
     if (!img.loading) img.loading = 'lazy';
   });
+
   const cards = Array.from(document.querySelectorAll('.post-card'));
   const cardData = cards.map(card => ({
     el: card,
@@ -20,50 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
   const noPostsMessage = document.getElementById('no-posts-message');
 
-  const updateToggleIcon = () => {
-    if (!toggle) return;
-    const icon = toggle.querySelector('.material-icons');
-    if (!icon) return;
-    icon.textContent = document.body.classList.contains('dark')
-      ? 'light_mode'
-      : 'dark_mode';
+  const applyHighlightTheme = () => {
+    const dark = !!(darkMedia && darkMedia.matches);
+    if (hljsLight) hljsLight.disabled = dark;
+    if (hljsDark) hljsDark.disabled = !dark;
   };
 
-  const hljsLight = document.getElementById('hljs-theme-light');
-  const hljsDark = document.getElementById('hljs-theme-dark');
+  applyHighlightTheme();
 
-  const applyTheme = (theme) => {
-    if (theme === 'dark') {
-      document.body.classList.add('dark');
-      if (hljsLight) hljsLight.disabled = true;
-      if (hljsDark) hljsDark.disabled = false;
-    } else {
-      document.body.classList.remove('dark');
-      if (hljsLight) hljsLight.disabled = false;
-      if (hljsDark) hljsDark.disabled = true;
-    }
-  };
-
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    applyTheme(savedTheme);
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    applyTheme('dark');
+  if (darkMedia && typeof darkMedia.addEventListener === 'function') {
+    darkMedia.addEventListener('change', applyHighlightTheme);
+  } else if (darkMedia && typeof darkMedia.addListener === 'function') {
+    darkMedia.addListener(applyHighlightTheme);
   }
-  updateToggleIcon();
-
-  toggle?.addEventListener('click', () => {
-    const dark = document.body.classList.toggle('dark');
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-    updateToggleIcon();
-  });
 
   const populateTagFilter = () => {
     if (!tagFilter || tagFilter.children.length > 1) return;
 
     const tagSet = new Set();
     for (const card of cards) {
-      const tags = card.dataset.tags.split(',');
+      const tags = (card.dataset.tags || '').split(',');
       for (let t of tags) {
         t = t.trim();
         if (t) tagSet.add(t);
@@ -88,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchesYear = !yearValue || data.year === yearValue;
       const matchesTag = !tagValue || data.tags.includes(tagValue);
 
-      data.el.style.display = matchesSearch && matchesYear && matchesTag ? 'flex' : 'none';
+      data.el.style.display = matchesSearch && matchesYear && matchesTag ? 'block' : 'none';
     }
 
     const anyVisible = cardData.some(data => data.el.style.display !== 'none');
@@ -105,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  const debouncedFilter = debounce(filterPosts, 200);
+  const debouncedFilter = debounce(filterPosts, 180);
   searchInput?.addEventListener('input', debouncedFilter);
   yearFilter?.addEventListener('change', filterPosts);
   tagFilter?.addEventListener('change', filterPosts);
@@ -117,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   populateTagFilter();
-
   filterPosts();
 
   document.querySelectorAll('pre code').forEach(block => {
@@ -128,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       navigator.clipboard.writeText(block.innerText).then(() => {
         button.textContent = 'Copied!';
-        setTimeout(() => (button.textContent = 'Copy'), 2000);
+        setTimeout(() => (button.textContent = 'Copy'), 1800);
       });
     });
     const pre = block.parentElement;
@@ -138,53 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const handleForm = (form, messageEl) => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      messageEl.classList.add('hidden');
-      form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      const data = new FormData(form);
-      try {
-        const resp = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (resp.ok) {
-          form.reset();
-          messageEl.textContent = 'Thanks! Your submission has been received.';
-        } else {
-          messageEl.textContent = 'There was a problem submitting the form.';
-          const inputs = form.querySelectorAll('input, textarea');
-          inputs.forEach(i => i.classList.add('error'));
-        }
-      } catch {
-        messageEl.textContent = 'There was a problem submitting the form.';
-      }
-
-      messageEl.classList.remove('hidden');
-    });
-  };
-
-  const subscribeForm = document.getElementById('subscribe-form');
-  const subscribeMsg = document.getElementById('subscribe-message');
-  if (subscribeForm && subscribeMsg) handleForm(subscribeForm, subscribeMsg);
-
-  const contactForm = document.querySelector('.contact-form');
-  const contactMsg = document.getElementById('contact-form-message');
-  if (contactForm && contactMsg) handleForm(contactForm, contactMsg);
-
   if (window.hljs) {
     hljs.highlightAll();
   }
-
-
-
 });
-
