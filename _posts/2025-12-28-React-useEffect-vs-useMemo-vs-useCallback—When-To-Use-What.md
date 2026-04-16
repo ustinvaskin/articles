@@ -7,7 +7,6 @@ tags:
   - hooks
   - react
 ---
-# React `useEffect` vs `useMemo` vs `useCallback` — When to Use What
 
 If you’ve ever asked yourself:
 

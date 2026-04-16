@@ -8,9 +8,6 @@ tags:
   - find
 ---
 
-
-# Метод Array.prototype.find() в JavaScript
-
 > 📌 **Tip:** метод `find()` ищет **первый** подходящий элемент. Если его нет, возвращается `undefined`.
 
 **Краткое содержание**
@@ -124,4 +121,3 @@ console.log(findBookIgnoreCase(books, "war and peace"));
 * [Статья по `findIndex()`](#)
 
 ---
-

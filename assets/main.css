@@ -88,6 +88,12 @@ a {
   font-weight: 760;
 }
 
+.site-title--compact {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
 .site-summary {
   margin: 14px 0 0;
   max-width: 35ch;
@@ -105,6 +111,7 @@ a {
 }
 
 .site-nav a,
+.site-title-link,
 .site-footer__links a,
 .card-title a,
 .post-body a,
@@ -116,6 +123,8 @@ a {
 
 .site-nav a:hover,
 .site-nav a:focus,
+.site-title-link:hover,
+.site-title-link:focus,
 .site-footer__links a:hover,
 .site-footer__links a:focus,
 .card-title a:hover,
@@ -412,6 +421,10 @@ pre code {
   .site-title,
   .post-title {
     font-size: 2rem;
+  }
+
+  .site-title--compact {
+    font-size: 1.15rem;
   }
 
   .filters {

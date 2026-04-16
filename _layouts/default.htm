@@ -22,7 +22,13 @@
       <header class="site-header">
         <div class="site-header__copy">
           <a class="site-kicker" href="https://ustinvaskin.github.io/Ustin.Vaskin/" target="_blank" rel="noreferrer noopener">about me</a>
-          <h1 class="site-title">{{ page.title }}</h1>
+          {% if page.url == '/' or page.url == '/index.html' %}
+            <h1 class="site-title">{{ page.title | default: site.title }}</h1>
+          {% else %}
+            <p class="site-title site-title--compact">
+              <a class="site-title-link" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+            </p>
+          {% endif %}
           <p class="site-summary">Notes on frontend systems, design decisions, and making technical products easier to work on.</p>
         </div>
         <nav class="site-nav" aria-label="Primary">

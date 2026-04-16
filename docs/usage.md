@@ -27,6 +27,7 @@ tags:
 ```
 
 Content goes below the front matter. Use Markdown for formatting.
+The `post` layout already renders the page title, so new articles should start with the body content rather than a duplicate top-level heading.
 
 ## Custom Forms
 
@@ -40,4 +41,3 @@ links and HTML:
 ```bash
 python3 tests/test_posts.py
 ```
-
