@@ -8,7 +8,6 @@ tags:
   - parsing
   - programming language
 ---
-# Building Tundra Language and Interpreter, Part 2: Definition and Experimentation
 
 > Tundra Script - extention files `.tds`
 
