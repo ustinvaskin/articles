@@ -884,11 +884,12 @@ Tundra 0.1 is the smallest version that can test the idea: a small scripting lan
 
 11. Stefan Fehrenbach and James Cheney. “Language-integrated Provenance.” *PPDP 2016*, pp. 214–227. DOI: <https://doi.org/10.1145/2967973.2968604>
 
-
 ---
-#### Code 
+
+#### Code
+
 [-> Tundra-lang](https://github.com/ustinvaskin/Tundra-lang)
 
-[-> Formal Grammar and AST Draft for Tundra 0.1]([https://github.com/ustinvaskin/Tundra-lang](https://github.com/ustinvaskin/Tundra-lang/blob/main/docs/Formal%20Grammar%20and%20AST%20Draft%20for%20Tundra%200.1.md))
+[-> Formal Grammar and AST Draft for Tundra 0.1](https://github.com/ustinvaskin/Tundra-lang/blob/main/docs/Formal%20Grammar%20and%20AST%20Draft%20for%20Tundra%200.1.md)
 
----- 
+---
