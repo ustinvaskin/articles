@@ -14,6 +14,7 @@ tags:
 In the last part, I defined the shape of Tundra 0.1. Now it is time to actually start building.
 
 The first thing the language needs to do is pretty basic: read source code. Not run it. Not understand all of it. Not evaluate expressions. Just **read** it and break it into meaningful pieces.
+< img src="https://raw.githubusercontent.com/ustinvaskin/articles/refs/heads/main/assets/scanner-tundra.png" width="500" style=“float:right”>
 
 <div style="width:40%; margin: auto;">
 ![ Tundra scanner](https://raw.githubusercontent.com/ustinvaskin/articles/refs/heads/main/assets/scanner-tundra.png) 
