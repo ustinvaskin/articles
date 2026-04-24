@@ -14,6 +14,97 @@ tags:
 In the last part, I defined the shape of Tundra 0.1. Now it is time to actually start building.
 
 The first thing the language needs to do is pretty basic: read source code. Not run it. Not understand all of it. Not evaluate expressions. Just **read** it and break it into meaningful pieces.
+
+<div style="max-width:760px;margin:1.5rem auto;padding:20px;border:1px solid #ddd;border-radius:16px;font-family:system-ui,sans-serif;">
+
+  <div style="margin-bottom:20px">
+    <div style="font-size:11px;letter-spacing:0.12em;color:#534AB7;font-weight:600;margin-bottom:4px">
+      TUNDRA LANGUAGE · PART 3
+    </div>
+    <div style="font-size:27px;font-weight:600;line-height:1.2">
+      The Scanner
+    </div>
+    <div style="font-size:13px;color:#666;margin-top:3px">
+      How raw source code becomes tokens — the first real step
+    </div>
+  </div>
+
+  <div style="display:flex;gap:10px;align-items:stretch;margin-bottom:18px;flex-wrap:wrap;">
+
+    <div style="flex:1;min-width:220px;background:#EEEDFE;border:1px solid #AFA9EC;border-radius:12px;padding:14px 16px;">
+      <div style="font-size:10px;letter-spacing:0.1em;font-weight:600;text-transform:uppercase;margin-bottom:10px;color:#3C3489">
+        Source code
+      </div>
+
+      <div style="font-family:monospace;font-size:13px;line-height:2;margin-bottom:12px">
+        <span style="color:#534AB7;font-weight:600">val</span>
+        <span style="color:#185FA5">name</span>
+        <span style="color:#3C3489">=</span>
+        <span style="color:#854F0B">"Tundra"</span><span style="color:#5F5E5A">;</span>
+      </div>
+
+      <div style="border-top:1px solid #AFA9EC;padding-top:10px;font-size:10px;color:#534AB7;line-height:1.6">
+        The computer sees:<br>
+        <span style="font-family:monospace;letter-spacing:0.12em;opacity:0.65">
+          v a l &nbsp; n a m e &nbsp; = ...
+        </span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:0 4px;">
+      <div style="font-size:18px;color:#534AB7;">→</div>
+      <div style="background:#534AB7;color:#fff;border-radius:10px;padding:10px 14px;text-align:center">
+        <div style="font-size:12px;font-weight:600">Scanner</div>
+        <div style="font-size:10px;opacity:0.75;margin-top:2px">char by char</div>
+      </div>
+      <div style="font-size:18px;color:#534AB7;">→</div>
+    </div>
+
+    <div style="flex:1;min-width:220px;background:#E1F5EE;border:1px solid #5DCAA5;border-radius:12px;padding:14px 16px;">
+      <div style="font-size:10px;letter-spacing:0.1em;font-weight:600;text-transform:uppercase;margin-bottom:10px;color:#085041">
+        Tokens
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div><span style="background:#CECBF6;color:#26215C;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;">VAL</span> <span style="font-family:monospace;font-size:12px;">val</span></div>
+        <div><span style="background:#B5D4F4;color:#042C53;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;">IDENTIFIER</span> <span style="font-family:monospace;font-size:12px;">name</span></div>
+        <div><span style="background:#D3D1C7;color:#2C2C2A;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;">EQUAL</span> <span style="font-family:monospace;font-size:12px;">=</span></div>
+        <div><span style="background:#FAC775;color:#412402;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;">STRING</span> <span style="font-family:monospace;font-size:12px;">"Tundra"</span></div>
+        <div><span style="background:#D3D1C7;color:#2C2C2A;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;">SEMICOLON</span> <span style="font-family:monospace;font-size:12px;">;</span></div>
+        <div><span style="background:#D3D1C7;color:#2C2C2A;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;">EOF</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="border-top:1px solid #ddd;margin:18px 0 16px"></div>
+
+  <div>
+    <div style="font-size:10px;letter-spacing:0.1em;font-weight:600;text-transform:uppercase;margin-bottom:10px;color:#666">
+      The language pipeline
+    </div>
+
+    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;row-gap:8px">
+      <div style="border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;">Raw text</div>
+      <div>→</div>
+      <div style="background:#CECBF6;border:1px solid #AFA9EC;color:#26215C;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:600;">Scanner · here</div>
+      <div>→</div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;">Tokens</div>
+      <div>→</div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;">Parser</div>
+      <div>→</div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;">AST</div>
+      <div>→</div>
+      <div style="border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;">Interpreter</div>
+    </div>
+
+    <div style="font-size:11px;color:#777;margin-top:8px">
+      Next up: the parser gives tokens structure — 1 + 2 * 3 becomes a tree, not a list.
+    </div>
+  </div>
+
+</div>
+
 ![Tundra scanner](https://raw.githubusercontent.com/ustinvaskin/articles/refs/heads/main/assets/scanner-tundra.png){: width="550" }
 
 That first step is called **scanning**, or sometimes **lexing**.
