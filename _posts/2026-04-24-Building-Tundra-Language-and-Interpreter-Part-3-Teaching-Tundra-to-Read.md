@@ -105,8 +105,6 @@ The first thing the language needs to do is pretty basic: read source code. Not 
 
 </div>
 
-![Tundra scanner](https://raw.githubusercontent.com/ustinvaskin/articles/refs/heads/main/assets/scanner-tundra.png){: width="550" }
-
 That first step is called **scanning**, or sometimes **lexing**.
 
 The scanner takes raw source code like this:
