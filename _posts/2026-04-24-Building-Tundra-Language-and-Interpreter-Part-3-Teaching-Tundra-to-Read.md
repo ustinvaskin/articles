@@ -14,14 +14,7 @@ tags:
 In the last part, I defined the shape of Tundra 0.1. Now it is time to actually start building.
 
 The first thing the language needs to do is pretty basic: read source code. Not run it. Not understand all of it. Not evaluate expressions. Just **read** it and break it into meaningful pieces.
-< img src="https://raw.githubusercontent.com/ustinvaskin/articles/refs/heads/main/assets/scanner-tundra.png" width="500" style=“float:right”>
 
-<img 
-  src="https://raw.githubusercontent.com/ustinvaskin/articles/refs/heads/main/assets/scanner-tundra.png" 
-  alt="Tundra scanner" 
-  width="500" 
-  style="float: right; margin-left: 1rem; margin-bottom: 1rem;"
->
 
 That first step is called **scanning**, or sometimes **lexing**.
 
