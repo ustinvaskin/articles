@@ -1,0 +1,18 @@
+# _config.yml
+title:       Ustin Vaskin Articles
+author:      Ustin Vaskin
+description: >-
+ Notes on frontend systems, design decisions, JavaScript, React, and language-tooling experiments.
+
+# For project pages:
+baseurl:     "/articles"                       # the sub-path your site lives at
+url:         "https://ustinvaskin.github.io"   # NO angle brackets!
+
+theme:       minima
+plugins:
+  - jekyll-feed
+highlighter: none
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+analytics_id: "" # Google Analytics measurement ID
