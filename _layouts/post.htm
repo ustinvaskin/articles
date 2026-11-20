@@ -1,18 +1,28 @@
 ---
 layout: default
 ---
-<article class="post">
-  <a href="{{ '/' | relative_url }}" class="back-link">Back to articles</a>
-  <h1 class="post-title">{{ page.title }}</h1>
-  <p class="meta">
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
-  </p>
-  {% if page.tags %}
-    <p class="tags">
-      {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-    </p>
+<article class="post gutter" id="top">
+  <header class="post-header">
+    <a href="{{ '/' | relative_url }}" class="back-link">← All articles</a>
+    <p class="eyebrow">NOTES / {{ page.date | date: "%Y" }}</p>
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {% if page.tags %}<div class="tags">{% for tag in page.tags %}<span class="tag">{{ tag | escape }}</span>{% endfor %}</div>{% endif %}
+    </div>
+  </header>
+  {% if page.tags contains 'interpreter' %}
+    <figure class="post-art"><img src="{{ '/assets/editorial-tundra.webp' | relative_url }}" width="1200" height="800" alt="" fetchpriority="high"></figure>
+  {% elsif page.tags contains 'react' or page.tags contains 'javascript' %}
+    <figure class="post-art"><img src="{{ '/assets/editorial-frontend.webp' | relative_url }}" width="1200" height="800" alt="" fetchpriority="high"></figure>
   {% endif %}
-  <div class="post-body">
-    {{ content }}
+  <div class="post-layout">
+    <aside class="post-aside">
+      <nav class="chapter-nav" aria-label="Article chapters" hidden>
+        <p class="eyebrow">ON THIS PAGE</p>
+        <ol class="chapter-list"></ol>
+      </nav>
+    </aside>
+    <div class="post-body">{{ content }}</div>
   </div>
 </article>

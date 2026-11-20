@@ -1,11 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const darkMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   const searchInput = document.getElementById('search-input');
   const yearFilter = document.getElementById('year-filter');
   const tagFilter = document.getElementById('tag-filter');
   const clearBtn = document.getElementById('clear-filters');
-  const hljsLight = document.getElementById('hljs-theme-light');
-  const hljsDark = document.getElementById('hljs-theme-dark');
 
   document.querySelectorAll('img').forEach(img => {
     if (!img.loading) img.loading = 'lazy';
@@ -22,20 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .filter(Boolean)
   }));
   const noPostsMessage = document.getElementById('no-posts-message');
-
-  const applyHighlightTheme = () => {
-    const dark = !!(darkMedia && darkMedia.matches);
-    if (hljsLight) hljsLight.disabled = dark;
-    if (hljsDark) hljsDark.disabled = !dark;
-  };
-
-  applyHighlightTheme();
-
-  if (darkMedia && typeof darkMedia.addEventListener === 'function') {
-    darkMedia.addEventListener('change', applyHighlightTheme);
-  } else if (darkMedia && typeof darkMedia.addListener === 'function') {
-    darkMedia.addListener(applyHighlightTheme);
-  }
 
   const populateTagFilter = () => {
     if (!tagFilter || tagFilter.children.length > 1) return;
@@ -97,6 +80,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
   populateTagFilter();
   filterPosts();
+
+  const chapterNav = document.querySelector('.chapter-nav');
+  const articleHeadings = document.querySelectorAll('.post-body h2, .post-body h3');
+  if (chapterNav && articleHeadings.length) {
+    const list = chapterNav.querySelector('.chapter-list');
+    const chapterLinks = [];
+    articleHeadings.forEach((heading, index) => {
+      if (!heading.id) {
+        let id = `chapter-${index + 1}`;
+        while (document.getElementById(id)) id += '-section';
+        heading.id = id;
+      }
+      const item = document.createElement('li');
+      if (heading.tagName === 'H3') item.className = 'chapter-subsection';
+      const link = document.createElement('a');
+      link.href = '#' + encodeURIComponent(heading.id);
+      link.textContent = heading.textContent.trim();
+      item.appendChild(link);
+      list.appendChild(item);
+      chapterLinks.push(link);
+    });
+    chapterNav.hidden = false;
+
+    let currentChapter = -1;
+    let scrollPending = false;
+    const updateCurrentChapter = () => {
+      scrollPending = false;
+      const marker = Math.min(160, window.innerHeight * 0.25);
+      let current = 0;
+      articleHeadings.forEach((heading, index) => {
+        if (heading.getBoundingClientRect().top <= marker) current = index;
+      });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = articleHeadings.length - 1;
+      }
+      if (current === currentChapter) return;
+      if (currentChapter >= 0) chapterLinks[currentChapter].removeAttribute('aria-current');
+      chapterLinks[current].setAttribute('aria-current', 'location');
+      currentChapter = current;
+    };
+    const scheduleChapterUpdate = () => {
+      if (!scrollPending) {
+        scrollPending = true;
+        requestAnimationFrame(updateCurrentChapter);
+      }
+    };
+    window.addEventListener('scroll', scheduleChapterUpdate, { passive: true });
+    window.addEventListener('resize', scheduleChapterUpdate);
+    window.addEventListener('load', scheduleChapterUpdate);
+    scheduleChapterUpdate();
+  }
 
   document.querySelectorAll('pre code').forEach(block => {
     const button = document.createElement('button');
