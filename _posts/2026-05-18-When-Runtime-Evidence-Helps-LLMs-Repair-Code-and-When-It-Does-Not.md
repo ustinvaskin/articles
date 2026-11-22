@@ -1,5 +1,6 @@
 ---
 layout: post
+tundra_order: 7
 title:  "When Runtime Evidence Helps LLMs Repair Code, and When It Does Not"
 date:   2026-05-18 13:00:00 +0200
 tags:

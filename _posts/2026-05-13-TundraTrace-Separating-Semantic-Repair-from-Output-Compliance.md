@@ -1,5 +1,6 @@
 ---
 layout: post
+tundra_order: 6
 title:  "TundraTrace: Separating Semantic Repair from Output Compliance in LLM Debugging"
 date:   2026-05-13 22:30:00 +0200
 tags:

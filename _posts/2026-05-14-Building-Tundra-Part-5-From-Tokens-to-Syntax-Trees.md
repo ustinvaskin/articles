@@ -1,5 +1,6 @@
 ---
 layout: post
+tundra_order: 5
 title:  "Building Tundra Part 5: From Tokens to Syntax Trees"
 date:   2026-05-14 10:00:00 +0000   # optional time and timezone
 tags:

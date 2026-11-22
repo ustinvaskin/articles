@@ -50,13 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchesYear = !yearValue || data.year === yearValue;
       const matchesTag = !tagValue || data.tags.includes(tagValue);
 
-      data.el.style.display = matchesSearch && matchesYear && matchesTag ? 'block' : 'none';
+      data.el.hidden = !(matchesSearch && matchesYear && matchesTag);
     }
 
-    const anyVisible = cardData.some(data => data.el.style.display !== 'none');
-    if (noPostsMessage) {
-      noPostsMessage.style.display = anyVisible ? 'none' : 'block';
-    }
+    if (noPostsMessage) noPostsMessage.hidden = cardData.some(data => !data.el.hidden);
   };
 
   const debounce = (fn, delay) => {
@@ -82,16 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
   filterPosts();
 
   const chapterNav = document.querySelector('.chapter-nav');
-  const articleHeadings = document.querySelectorAll('.post-body h2, .post-body h3');
+  const articleBody = document.querySelector('.post-body');
+  const headings = Array.from(articleBody?.querySelectorAll('h1, h2, h3, h4, h5, h6') ?? []);
+  headings.forEach((heading, index) => {
+    if (!heading.id) {
+      let id = `chapter-${index + 1}`;
+      while (document.getElementById(id)) id += '-section';
+      heading.id = id;
+    }
+  });
+
+  const articleHeadings = headings.filter(heading => heading.matches('h2, h3'));
   if (chapterNav && articleHeadings.length) {
     const list = chapterNav.querySelector('.chapter-list');
     const chapterLinks = [];
-    articleHeadings.forEach((heading, index) => {
-      if (!heading.id) {
-        let id = `chapter-${index + 1}`;
-        while (document.getElementById(id)) id += '-section';
-        heading.id = id;
-      }
+    articleHeadings.forEach(heading => {
       const item = document.createElement('li');
       if (heading.tagName === 'H3') item.className = 'chapter-subsection';
       const link = document.createElement('a');
@@ -103,11 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     chapterNav.hidden = false;
 
+    const siteHeader = document.querySelector('.site-header');
     let currentChapter = -1;
     let scrollPending = false;
     const updateCurrentChapter = () => {
       scrollPending = false;
-      const marker = Math.min(160, window.innerHeight * 0.25);
+      const headerBottom = siteHeader?.getBoundingClientRect().bottom ?? 0;
+      const bounds = articleBody.getBoundingClientRect();
+      const travel = Math.max(1, bounds.height - (window.innerHeight - headerBottom));
+      const progress = Math.max(0, Math.min(1, (headerBottom - bounds.top) / travel));
+      chapterNav.style.setProperty('--reading-progress', progress);
+      const marker = Math.max(headerBottom + 24, Math.min(160, window.innerHeight * 0.25));
       let current = 0;
       articleHeadings.forEach((heading, index) => {
         if (heading.getBoundingClientRect().top <= marker) current = index;
@@ -129,8 +137,50 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', scheduleChapterUpdate, { passive: true });
     window.addEventListener('resize', scheduleChapterUpdate);
     window.addEventListener('load', scheduleChapterUpdate);
+    new ResizeObserver(scheduleChapterUpdate).observe(articleBody);
     scheduleChapterUpdate();
   }
+
+  headings.forEach(heading => {
+    const label = heading.textContent.trim();
+    const fragment = '#' + encodeURIComponent(heading.id);
+    const canCopy = !!navigator.clipboard?.writeText;
+    const link = document.createElement('a');
+    link.className = 'section-link';
+    link.href = fragment;
+    link.setAttribute('aria-label', `${canCopy ? 'Copy link to' : 'Link to'} ${label}`);
+
+    const icon = document.createElement('span');
+    icon.className = 'section-link-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    link.appendChild(icon);
+
+    const feedback = document.createElement('span');
+    feedback.className = 'section-link-feedback';
+    feedback.setAttribute('role', 'status');
+    let feedbackTimer;
+    link.addEventListener('click', async event => {
+      if (!canCopy || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      const url = new URL(location.href);
+      url.hash = fragment;
+      clearTimeout(feedbackTimer);
+      try {
+        await navigator.clipboard.writeText(url.href);
+        feedback.textContent = 'Link copied';
+      } catch {
+        location.hash = fragment;
+        feedback.textContent = 'Copy the link from the address bar';
+      }
+      feedbackTimer = setTimeout(() => { feedback.textContent = ''; }, 2200);
+    });
+
+    if (!heading.hasAttribute('aria-label') && !heading.hasAttribute('aria-labelledby')) {
+      heading.setAttribute('aria-label', label);
+    }
+    heading.classList.add('has-section-link');
+    heading.append(link, feedback);
+  });
 
   document.querySelectorAll('pre code').forEach(block => {
     const button = document.createElement('button');

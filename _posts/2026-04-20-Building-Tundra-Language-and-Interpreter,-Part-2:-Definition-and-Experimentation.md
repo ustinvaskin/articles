@@ -1,5 +1,6 @@
 ---
 layout: post
+tundra_order: 2
 title:  "Building Tundra Language and Interpreter, Part 2: Definition and Experimentation"
 date:   2026-04-20 10:00:00 +0000   # optional time and timezone
 tags:

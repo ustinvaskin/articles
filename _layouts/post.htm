@@ -3,7 +3,7 @@ layout: default
 ---
 <article class="post gutter" id="top">
   <header class="post-header">
-    <a href="{{ '/' | relative_url }}" class="back-link">← All articles</a>
+    <a href="{{ '/' | relative_url }}#article-list" class="back-link"><span class="site-icon site-icon--left" aria-hidden="true"></span> All articles</a>
     <p class="eyebrow">NOTES / {{ page.date | date: "%Y" }}</p>
     <h1 class="post-title">{{ page.title | escape }}</h1>
     <div class="post-meta">
@@ -20,9 +20,21 @@ layout: default
     <aside class="post-aside">
       <nav class="chapter-nav" aria-label="Article chapters" hidden>
         <p class="eyebrow">ON THIS PAGE</p>
-        <ol class="chapter-list"></ol>
+        <div class="chapter-track"><ol class="chapter-list"></ol></div>
       </nav>
     </aside>
-    <div class="post-body">{{ content }}</div>
+    <div class="reading-column">
+      <div class="post-body">{{ content }}</div>
+      {% if page.tundra_order %}
+        {% assign next_tundra = site.posts | where_exp: "post", "post.tundra_order > page.tundra_order" | sort: "tundra_order" | first %}
+        <section class="series-next" aria-labelledby="series-next-title">
+          <h2 id="series-next-title">{% if next_tundra %}Next in the Tundra series{% else %}More about Tundra{% endif %}</h2>
+          {% if next_tundra %}
+            <a class="series-next-link" href="{{ next_tundra.url | relative_url }}">{{ next_tundra.title | escape }} <span class="site-icon site-icon--external" aria-hidden="true"></span></a>
+          {% endif %}
+          <a class="pill" href="/Ustin.Vaskin/tundra.html">Explore the Tundra project <span class="site-icon site-icon--external" aria-hidden="true"></span></a>
+        </section>
+      {% endif %}
+    </div>
   </div>
 </article>

@@ -1,5 +1,6 @@
 ---
 layout: post
+tundra_order: 3
 title:  "Building Tundra Language and Interpreter, Part 3: Teaching Tundra to Read"
 date:   2026-04-24 10:00:00 +0000   # optional time and timezone
 tags:

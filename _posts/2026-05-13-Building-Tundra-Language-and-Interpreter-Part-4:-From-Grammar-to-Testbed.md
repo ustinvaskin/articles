@@ -1,5 +1,6 @@
 ---
 layout: post
+tundra_order: 4
 title:  "Building Tundra Language and Interpreter, Part 4: From Grammar to Testbed"
 date:   2026-05-13 10:00:00 +0000   # optional time and timezone
 tags:
